@@ -1,5 +1,4 @@
 
-
 resource "libvirt_domain" "control_plane" {
   name        = "control-plane"
   memory      = 4096
@@ -20,6 +19,28 @@ resource "libvirt_domain" "control_plane" {
   }
 
   devices = {
+    /*serials = [{
+      source = {
+        pty = {
+          path = "/dev/pts/3"
+        }
+      }
+      target = {
+        port = 0
+        type = "isa-serial"
+      }
+    }]
+    consoles = [{
+      source = {
+        pty = {
+          path = "/dev/pts/4"
+        }
+      }
+      target = {
+        port = 0
+        type = "serial"
+      }
+    }]*/
     disks = [
       {
         source = {
@@ -40,10 +61,11 @@ resource "libvirt_domain" "control_plane" {
         }
         source = {
           network = {
-            network = "default"
+            network = libvirt_network.chroma_network.name
           }
         }
       }
     ]
   }
+
 }
