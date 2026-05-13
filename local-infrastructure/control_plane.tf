@@ -1,17 +1,22 @@
 
 
 resource "libvirt_domain" "control_plane" {
-  name   = "example-vm"
-  memory = 4096
-  memory_unit   = "MiB"
-  vcpu   = 2
-  type   = "kvm"
+  name        = "control-plane"
+  memory      = 4096
+  memory_unit = "MiB"
+  vcpu        = 2
+  type        = "kvm"
+  running     = var.running
 
   os = {
     type         = "hvm"
     type_arch    = "x86_64"
     type_machine = "q35"
-    boot_devices = ["hd", "network"]
+    boot_devices = [
+      {
+        dev = "hd"
+      }
+    ]
   }
 
   devices = {
@@ -19,7 +24,7 @@ resource "libvirt_domain" "control_plane" {
       {
         source = {
           file = {
-            file = "/var/lib/libvirt/images/example.qcow2"
+            file = var.control_plane_image
           }
         }
         target = {
