@@ -1,0 +1,51 @@
+# === Terraform ===
+# Local .terraform folder containing providers and modules
+.terraform/
+
+# Distributed lock files
+.terraform.lock.hcl
+
+# Terraform state files (IMPORTANT: Contains your infra data)
+*.tfstate
+*.tfstate.backup
+
+# Variables files (might contain secrets)
+*.tfvars
+*.tfvars.json
+
+# === KVM / Libvirt / Images ===
+# Ignore actual QCOW2 images or ISOs (too large for Git)
+*.qcow2
+*.iso
+*.img
+*.raw
+
+# Cloud-init generated files
+common-init.iso
+network-config
+user-data
+
+# === Python / ChromaDB ===
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+
+# ChromaDB local persistence (if running locally for testing)
+chroma/
+*.db
+
+# === Logs & Benchmarking ===
+*.log
+results/*.json
+results/*.csv
+
+# === OS & IDE ===
+.DS_Store
+.vscode/
+.idea/
