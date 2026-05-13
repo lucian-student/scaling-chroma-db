@@ -4,6 +4,7 @@
 
 # Distributed lock files
 .terraform.lock.hcl
+.terraform.tfstate.lock.info
 
 # Terraform state files (IMPORTANT: Contains your infra data)
 *.tfstate
@@ -49,3 +50,6 @@ results/*.csv
 .DS_Store
 .vscode/
 .idea/
+
+
+logs

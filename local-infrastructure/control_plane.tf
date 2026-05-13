@@ -7,6 +7,10 @@ resource "libvirt_domain" "control_plane" {
   type        = "kvm"
   running     = var.running
 
+  cpu = {
+    mode = "host-passthrough"
+  }
+
   os = {
     type         = "hvm"
     type_arch    = "x86_64"
@@ -19,28 +23,28 @@ resource "libvirt_domain" "control_plane" {
   }
 
   devices = {
-    /*serials = [{
-      source = {
-        pty = {
-          path = "/dev/pts/3"
-        }
-      }
+    serials = [{
+      #source = {
+      #  pty = {
+      #    path = none
+      #  }
+      #}
       target = {
         port = 0
         type = "isa-serial"
       }
     }]
     consoles = [{
-      source = {
-        pty = {
-          path = "/dev/pts/4"
-        }
-      }
+      #source = {
+      #  pty = {
+      #    path = "/dev/pts/4"
+      #  }
+      #}
       target = {
         port = 0
         type = "serial"
       }
-    }]*/
+    }]
     disks = [
       {
         source = {
